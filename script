@@ -1,0 +1,1876 @@
+--SUPER EASY MODE!!!
+-- customization
+local SpawnWithCrucifix = false -- set to true if u want (doesnt work on real entities)
+-- set-up
+local Sprinting = false
+local Woebegone = false
+local WoebegoneProgress = 0
+local Mouse = game:GetService("Players").LocalPlayer:GetMouse()
+local Humanoid = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+local HasSilenceAchievement = false
+local HasDepthAchievement = false
+local HasSneakAttackAchievement = false
+local HasSpeedAchievement = false
+local HasSurgeAchievement = false
+local HasB60Achievement = false
+local HasWoebegoneAchievement = false
+local SolarisLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/sol"))()
+SolarisLib:Notification("super easy mode","it has been turned on!")
+
+local Functions = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Functions.lua"))()
+local CustomShop = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Custom%20Shop%20Items/Source.lua"))()
+
+
+local exampleTool = LoadCustomInstance("rbxassetid://13288743648")
+
+
+CustomShop.CreateItem(exampleTool, {
+    Title = "Guiding Candle",
+    Desc = "??? ???? ?? ???? ???",
+    Image = "rbxassetid://13288888356",
+    Price = 75,
+    Stack = 1,
+})
+exampleTool.Equipped:Connect(function()
+    local Idle = exampleTool.Animations.idle
+    local IdleTrack = Humanoid:LoadAnimation(Idle)
+    IdleTrack:Play()
+end)
+exampleTool.Unequipped:Connect(function()
+    for _,anim in pairs(Humanoid.Animator:GetPlayingAnimationTracks()) do
+        anim:Stop()
+    end
+end)
+local whisperer = Instance.new("ScreenGui")
+local Whisperer = Instance.new("ImageLabel")
+local WhispererTalking = Instance.new("Sound")
+
+whisperer.Name = "whisperer"
+whisperer.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+whisperer.Enabled = false
+whisperer.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Whisperer.Name = "Whisperer"
+Whisperer.Parent = whisperer
+Whisperer.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Whisperer.BackgroundTransparency = 1.000
+Whisperer.BorderSizePixel = 0
+Whisperer.Size = UDim2.new(1, 0, 1, 0)
+Whisperer.Image = "http://www.roblox.com/asset/?id=10971355872"
+
+WhispererTalking.Name = "Talking"
+WhispererTalking.SoundId = "rbxassetid://1202347858"
+WhispererTalking.PlaybackSpeed = 0.5
+WhispererTalking.Parent = whisperer
+WhispererTalking.Looped = true
+
+local Dread = Instance.new("ScreenGui")
+local ImageLabel = Instance.new("ImageLabel")
+
+Dread.Name = "Dread"
+Dread.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+Dread.Enabled = false
+Dread.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+ImageLabel.Parent = Dread
+ImageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel.BackgroundTransparency = 1.000
+ImageLabel.Size = UDim2.new(1, 0, 1, 0)
+ImageLabel.Image = "http://www.roblox.com/asset/?id=11036572035"
+ImageLabel.ImageTransparency = 0.500
+if SpawnWithCrucifix == true then
+    _G.Uses = 1
+    _G.Range = 30
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/PenguinManiack/Crucifix/main/Crucifix.lua'))()
+end
+-- door 0 customization
+local GFM = game:GetObjects("rbxassetid://13292127756")[1]
+local SL = game:GetObjects("rbxassetid://13292130638")[1]
+local Window = game:GetObjects("rbxassetid://13291352120")[1]
+local SP = game:GetObjects("rbxassetid://13291348854")[1]
+SP.Parent = workspace.CurrentRooms["0"]
+SP.Handle.ModulePrompt.Triggered:Connect(function()
+    local Tool = game:GetObjects("rbxassetid://12982102335")[1]
+
+    Tool.Parent = game.Players.LocalPlayer.Backpack
+
+    Tool.Equipped:Connect(function()
+        local Idle = Tool.Animations.idle
+        local IdleTrack = Humanoid:LoadAnimation(Idle)
+
+        IdleTrack:Play()
+    end)
+    Tool.Unequipped:Connect(function()
+        for _,anim in pairs(Humanoid.Animator:GetPlayingAnimationTracks()) do
+            anim:Stop()
+        end
+    end)
+    SP:Destroy()
+end)
+Window.Parent = workspace.CurrentRooms["0"]
+SL.Parent = workspace.CurrentRooms["0"]
+SL.ModulePrompt.Triggered:Connect(function()
+    local Tool = game:GetObjects("rbxassetid://12928963137")[1]
+
+    Tool.Parent = game.Players.LocalPlayer.Backpack
+
+    Tool.Equipped:Connect(function()
+        local Idle = Tool.Animations.idle
+        local IdleTrack = Humanoid:LoadAnimation(Idle)
+
+        IdleTrack:Play()
+    end)
+    Tool.Unequipped:Connect(function()
+        for _,anim in pairs(Humanoid.Animator:GetPlayingAnimationTracks()) do
+            anim:Stop()
+        end
+    end)
+    SL:Destroy()
+end)
+GFM.Parent = workspace.CurrentRooms["0"]
+game:GetService("ReplicatedStorage").Entities.Screech.Top.Slime_Top.Transparency = 1
+game:GetService("Workspace").CurrentRooms["0"].Assets["Desk_Bell"].Base.InteractSound.SoundId = "rbxassetid://11984351"
+game:GetService("Workspace").CurrentRooms["0"].Assets["Desk_Bell"].Base.InteractSound.PlaybackSpeed = 1
+game:GetService("Workspace").CurrentRooms["0"].Assets["Desk_Bell"].Base.InteractSound.Volume = 10
+game:GetService("Workspace").CurrentRooms["0"].Assets["Desk_Bell"].InteractPrompt.Triggered:Connect(function()
+    game.Players.LocalPlayer.Character.Humanoid.Health = 0
+end)
+Mouse.KeyDown:Connect(function(key)
+    if key == "q" then
+        Sprinting = true
+    end
+end)
+Mouse.KeyUp:Connect(function(key)
+    if key == "q" then
+        Sprinting = false
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 15
+    end
+end)
+--entity spawning
+repeat
+    wait(0.1)
+until game:GetService("ReplicatedStorage").GameData.LatestRoom.Value > 3
+    game:GetService("ReplicatedStorage").GameData.LatestRoom.Changed:Connect(function()
+        if Woebegone == true and WoebegoneProgress == 4 then
+            Woebegone = false
+            WoebegoneProgress = 0
+            if HasWoebegoneAchievement == false then
+                local Achievements = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Custom%20Achievements/Source.lua"))()
+                
+                -- Creates and displays your custom achievement
+                Achievements.Get({
+                    Title = "Guiltlessness",
+                    Desc = "Unkind of you...",
+                    Reason = "Survive Woebegone",
+                    Image = "https://cdn.discordapp.com/attachments/1080299690328858655/1103823433046958214/120.png",
+                })
+                HasWoebegoneAchievement = true
+            end
+        end
+        if Woebegone == true then
+
+        end
+        whisperer.Enabled = false
+        WhispererTalking:Stop()
+        local SpawnChance = math.random(1,20)
+        if SpawnChance >= 8 then
+            local EntityToSpawn = math.random(1,23)
+            if EntityToSpawn == 1 then
+            local Spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Entity%20Spawner/Source.lua"))()
+            
+            local entity = Spawner.createEntity({
+            CustomName = "SUBSPACE TRIPMINE!!!!",
+            Model = "rbxassetid://13232317657", -- Your entity's model url here ("rbxassetid://1234567890" or GitHub raw url)
+                Speed = 300,
+                MoveDelay = 2,
+                HeightOffset = 0,
+                CanKill = true,
+                KillRange = 50,
+                SpawnInFront = false,
+                ShatterLights = false,
+                FlickerLights = {
+                    Enabled = true,
+                    Duration = 1
+                },
+                Cycles = {
+                    Min = 2,
+                    Max = 5,
+                    Delay = 0
+                },
+                CamShake = {
+                    Enabled = false,
+                    Values = {900, 900, 900, 900},
+                    Range = 100
+                },
+                ResistCrucifix = false,
+                BreakCrucifix = true,
+                DeathMessage = {"You died to subspace tripmine...", "hide like you do with rush", "idiot"},
+                IsCuriousLight = true
+            })
+            
+            ---====== Debug ======---
+            
+            entity.Debug.OnEntitySpawned = function()
+                print("Entity has spawned")
+            end
+            
+            entity.Debug.OnEntityDespawned = function()
+                print("Entity has despawned")
+            end
+            
+            entity.Debug.OnEntityStartMoving = function()
+                print("Entity started moving")
+            end
+            
+            entity.Debug.OnEntityFinishedRebound = function()
+                print("Entity finished rebound")
+            end
+            
+            entity.Debug.OnEntityEnteredRoom = function(room)
+                print("Entity entered room:", room)
+            end
+            
+            entity.Debug.OnLookAtEntity = function()
+                print("Player looking at entity")
+            end
+            
+            entity.Debug.OnDeath = function()
+                print("Player has died")
+            end
+            
+            --[[
+                NOTE: By overwriting 'OnUseCrucifix', the default crucifixion will be ignored and this function will be called instead
+            
+                entity.Debug.OnUseCrucifix = function()
+                    print("Custom crucifixion script here")
+                end
+            ]]--
+            Spawner.runEntity(entity)
+            end            ---====== Create entity ======---
+            
+   
+            if EntityToSpawn == 2 then
+        
+                local Spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Entity%20Spawner/Source.lua"))()
+                
+                Dread.Enabled = true
+                ---====== Create entity ======---
+                
+                local entity = Spawner.createEntity({
+                    CustomName = "Dread",
+                    Model = "rbxassetid://12409937936", -- Your entity's model url here ("rbxassetid://1234567890" or GitHub raw url)
+                    Speed = 100,
+                    MoveDelay = 2,
+                    HeightOffset = 0,
+                    CanKill = true,
+                    KillRange = 50,
+                    SpawnInFront = false,
+                    ShatterLights = false,
+                    FlickerLights = {
+                        Enabled = true,
+                        Duration = 1
+                    },
+                    Cycles = {
+                        Min = 1,
+                        Max = 1,
+                        Delay = 0
+                    },
+                    CamShake = {
+                        Enabled = false,
+                        Values = {900, 900, 900, 900},
+                        Range = 100
+                    },
+                    ResistCrucifix = false,
+                    BreakCrucifix = true,
+                    DeathMessage = {"You died to...", "Uh...", "I'm not sure who you died to.","...","It looks terrifying so you could call him Dread.","Use the same tactics that you use with Rush and Ambush!"},
+                    IsCuriousLight = false
+                })
+                
+                ---====== Debug ======---
+                
+                entity.Debug.OnEntitySpawned = function()
+                    print("Entity has spawned")
+                end
+                
+                entity.Debug.OnEntityDespawned = function()
+                    Dread.Enabled = false
+                end
+                
+                entity.Debug.OnEntityStartMoving = function()
+                    print("Entity started moving")
+                end
+                
+                entity.Debug.OnEntityFinishedRebound = function()
+                    print("Entity finished rebound")
+                end
+                
+                entity.Debug.OnEntityEnteredRoom = function(room)
+                    print("Entity entered room:", room)
+                end
+                
+                entity.Debug.OnLookAtEntity = function()
+                    print("Player looking at entity")
+                end
+                
+                entity.Debug.OnDeath = function()
+                    print("Player has died")
+                end
+                
+                --[[
+                    NOTE: By overwriting 'OnUseCrucifix', the default crucifixion will be ignored and this function will be called instead
+                
+                    entity.Debug.OnUseCrucifix = function()
+                        print("Custom crucifixion script here")
+                    end
+                ]]--
+                
+                ---====== Run entity ======---
+                
+                Spawner.runEntity(entity)
+            end
+            if EntityToSpawn == 4 then
+        
+                local Spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Entity%20Spawner/Source.lua"))()
+                local Warning = game:GetObjects("rbxassetid://13317095429")[1]
+                local Sound = Instance.new("Sound")
+                local Reverb = Instance.new("ReverbSoundEffect")
+                Reverb.Parent = Sound
+                Sound.Volume = 5
+                Sound.Parent = workspace
+                Sound.SoundId = "rbxassetid://5000061542"
+                Sound:Play()
+                Warning.Parent = game.Lighting
+                Warning.Saturation = -1
+                wait(3.577)
+                Warning:Destroy()
+                Sound:Destroy()
+                ---====== Create entity ======---
+                
+                local entity = Spawner.createEntity({
+                    CustomName = "Kenny",
+                    Model = "rbxassetid://13234153006", -- Your entity's model url here ("rbxassetid://1234567890" or GitHub raw url)
+                    Speed = 1000,
+                    MoveDelay = 2,
+                    HeightOffset = 0,
+                    CanKill = true,
+                    KillRange = 50,
+                    SpawnInFront = false,
+                    ShatterLights = true,
+                    FlickerLights = {
+                        Enabled = false,
+                        Duration = 3
+                    },
+                    Cycles = {
+                        Min = 1,
+                        Max = 1,
+                        Delay = 0
+                    },
+                    CamShake = {
+                        Enabled = true,
+                        Values = {0.1, 900, 900, 900},
+                        Range = 100
+                    },
+                    ResistCrucifix = true,
+                    BreakCrucifix = true,
+                    DeathMessage = {"You died to Kenny...", "Use the same tactics that you use with Rush and Ambush!"},
+                    IsCuriousLight = false
+                })
+                
+                ---====== Debug ======---
+                
+                entity.Debug.OnEntitySpawned = function()
+                    print("Entity has spawned")
+                end
+                
+                entity.Debug.OnEntityDespawned = function()
+                    print("Entity has despawned")
+                end
+                
+                entity.Debug.OnEntityStartMoving = function()
+                    print("Entity started moving")
+                end
+                
+                entity.Debug.OnEntityFinishedRebound = function()
+                    print("Entity finished rebound")
+                end
+                
+                entity.Debug.OnEntityEnteredRoom = function(room)
+                    print("Entity entered room:", room)
+                end
+                
+                entity.Debug.OnLookAtEntity = function()
+                    print("Player looking at entity")
+                end
+                
+                entity.Debug.OnDeath = function()
+                    print("Player has died")
+                end
+                
+                --[[
+                    NOTE: By overwriting 'OnUseCrucifix', the default crucifixion will be ignored and this function will be called instead
+                
+                    entity.Debug.OnUseCrucifix = function()
+                        print("Custom crucifixion script here")
+                    end
+                ]]--
+                
+                ---====== Run entity ======---
+                
+                Spawner.runEntity(entity)
+            end
+            if EntityToSpawn == 3 then
+        
+                local Spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Entity%20Spawner/Source.lua"))()
+                
+                ---====== Create entity ======---
+                
+                local entity = Spawner.createEntity({
+                    CustomName = "BALD KREEK!!!",
+                    Model = "rbxassetid://13233447962", -- Your entity's model url here ("rbxassetid://1234567890" or GitHub raw url)
+                    Speed = 100,
+                    MoveDelay = 5,
+                    HeightOffset = 0,
+                    CanKill = true,
+                    KillRange = 50,
+                    SpawnInFront = false,
+                    ShatterLights = false,
+                    FlickerLights = {
+                        Enabled = true,
+                        Duration = 5
+                    },
+                    Cycles = {
+                        Min = 1,
+                        Max = 1,
+                        Delay = 0
+                    },
+                    CamShake = {
+                        Enabled = false,
+                        Values = {900, 900, 900, 900},
+                        Range = 100
+                    },
+                    ResistCrucifix = false,
+                    BreakCrucifix = true,
+                    DeathMessage = {"You died to Bald Kreek...", "Use the same tactics that you use with Rush and Ambush!"},
+                    IsCuriousLight = false
+                })
+                
+                ---====== Debug ======---
+                
+                entity.Debug.OnEntitySpawned = function()
+                    print("Entity has spawned")
+                end
+                
+                entity.Debug.OnEntityDespawned = function()
+                    print("Entity has despawned")
+                end
+                
+                entity.Debug.OnEntityStartMoving = function()
+                    print("Entity started moving")
+                end
+                
+                entity.Debug.OnEntityFinishedRebound = function()
+                    print("Entity finished rebound")
+                end
+                
+                entity.Debug.OnEntityEnteredRoom = function(room)
+                    print("Entity entered room:", room)
+                end
+                
+                entity.Debug.OnLookAtEntity = function()
+                    print("Player looking at entity")
+                end
+                
+                entity.Debug.OnDeath = function()
+                    print("Player has died")
+                end
+                
+                --[[
+                    NOTE: By overwriting 'OnUseCrucifix', the default crucifixion will be ignored and this function will be called instead
+                
+                    entity.Debug.OnUseCrucifix = function()
+                        print("Custom crucifixion script here")
+                    end
+                ]]--
+                
+                ---====== Run entity ======---
+                
+                Spawner.runEntity(entity)
+            end
+            if EntityToSpawn == 5 then
+        
+                local Spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Entity%20Spawner/Source.lua"))()
+                
+                ---====== Create entity ======---
+                local Sound = Instance.new("Sound")
+                Sound.SoundId = "rbxassetid://6643570033"
+                Sound.Parent = workspace
+                Sound.Volume = 5
+                Sound:Play()
+                wait(2.136)
+                Sound:Destroy()
+                
+                local entity = Spawner.createEntity({
+                    CustomName = "Silence",
+                    Model = "rbxassetid://13235099754", -- Your entity's model url here ("rbxassetid://1234567890" or GitHub raw url)
+                    Speed = 70,
+                    MoveDelay = 2,
+                    HeightOffset = 0,
+                    CanKill = true,
+                    KillRange = 50,
+                    SpawnInFront = false,
+                    ShatterLights = false,
+                    FlickerLights = {
+                        Enabled = false,
+                        Duration = 1
+                    },
+                    Cycles = {
+                        Min = 1,
+                        Max = 1,
+                        Delay = 0
+                    },
+                    CamShake = {
+                        Enabled = false,
+                        Values = {900, 900, 900, 900},
+                        Range = 100
+                    },
+                    ResistCrucifix = false,
+                    BreakCrucifix = true,
+                    DeathMessage = {"You died to Silence...", "This one's a bit of a tricky one.", "You will hear a sound when it shows up.","It also makes no sound.","Use the same tactics that you use with Rush and Ambush!"},
+                    IsCuriousLight = false
+                })
+                
+                ---====== Debug ======---
+                
+                entity.Debug.OnEntitySpawned = function()
+                    print("Entity has spawned")
+                end
+                
+                entity.Debug.OnEntityDespawned = function()
+                    if HasSilenceAchievement == false then
+                        local Achievements = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Custom%20Achievements/Source.lua"))()
+
+                        -- Creates and displays your custom achievement
+                        Achievements.Get({
+                            Title = "Shh!!!",
+                            Desc = "Tip-Toe!",
+                            Reason = "Survive Silence.",
+                            Image = "https://cdn.discordapp.com/attachments/1080299690328858655/1099854661692964914/250.png",
+                        })
+                        HasSilenceAchievement = true
+                    end
+                end
+                
+                entity.Debug.OnEntityStartMoving = function()
+                    print("Entity started moving")
+                end
+                
+                entity.Debug.OnEntityFinishedRebound = function()
+                    print("Entity finished rebound")
+                end
+                
+                entity.Debug.OnEntityEnteredRoom = function(room)
+                    print("Entity entered room:", room)
+                end
+                
+                entity.Debug.OnLookAtEntity = function()
+                    print("Player looking at entity")
+                end
+                
+                entity.Debug.OnDeath = function()
+                    HasSilenceAchievement = true
+                end
+                
+                --[[
+                    NOTE: By overwriting 'OnUseCrucifix', the default crucifixion will be ignored and this function will be called instead
+                
+                    entity.Debug.OnUseCrucifix = function()
+                        print("Custom crucifixion script here")
+                    end
+                ]]--
+                
+                ---====== Run entity ======---
+                
+                Spawner.runEntity(entity)
+            end
+            if EntityToSpawn == 6 then
+        
+                local Spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Entity%20Spawner/Source.lua"))()
+                
+                ---====== Create entity ======---
+                local Sound = Instance.new("Sound")
+                local Warning = game:GetObjects("rbxassetid://13317105858")[1]
+                Warning.Parent = game.Lighting
+                Sound.SoundId = "rbxassetid://4288784832"
+                Sound.Parent = workspace
+                Sound.Volume = 5
+                Sound:Play()
+                wait(1.237)
+                Sound:Destroy()
+                Warning:Destroy()
+                
+                local entity = Spawner.createEntity({
+                    CustomName = "Depth",
+                    Model = "rbxassetid://13242129711", -- Your entity's model url here ("rbxassetid://1234567890" or GitHub raw url)
+                    Speed = 300,
+                    MoveDelay = 0,
+                    HeightOffset = 0,
+                    CanKill = true,
+                    KillRange = 50,
+                    SpawnInFront = false,
+                    ShatterLights = false,
+                    FlickerLights = {
+                        Enabled = false,
+                        Duration = 1
+                    },
+                    Cycles = {
+                        Min = 1,
+                        Max = 6,
+                        Delay = 0
+                    },
+                    CamShake = {
+                        Enabled = false,
+                        Values = {900, 900, 900, 900},
+                        Range = 100
+                    },
+                    ResistCrucifix = false,
+                    BreakCrucifix = true,
+                    DeathMessage = {"You died to Depth...","Use the same tactics that you use with Rush and Ambush!"},
+                    IsCuriousLight = false
+                })
+                
+                ---====== Debug ======---
+                
+                entity.Debug.OnEntitySpawned = function()
+                    print("Entity has spawned")
+                end
+                
+                entity.Debug.OnEntityDespawned = function()
+                    if HasDepthAchievement == false then
+                        local Achievements = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Custom%20Achievements/Source.lua"))()
+
+                        -- Creates and displays your custom achievement
+                        Achievements.Get({
+                            Title = "Deepness",
+                            Desc = "Stop going so deep!",
+                            Reason = "Survive Depth.",
+                            Image = "https://cdn.discordapp.com/attachments/1080299690328858655/1100128052425523230/Png.png",
+                        })
+                        HasDepthAchievement = true
+                    end
+                end
+                
+                entity.Debug.OnEntityStartMoving = function()
+                    print("Entity started moving")
+                end
+                
+                entity.Debug.OnEntityFinishedRebound = function()
+                    print("Entity finished rebound")
+                end
+                
+                entity.Debug.OnEntityEnteredRoom = function(room)
+                    print("Entity entered room:", room)
+                end
+                
+                entity.Debug.OnLookAtEntity = function()
+                    print("Player looking at entity")
+                end
+                
+                entity.Debug.OnDeath = function()
+                    HasDepthAchievement = true
+                end
+                
+                --[[
+                    NOTE: By overwriting 'OnUseCrucifix', the default crucifixion will be ignored and this function will be called instead
+                
+                    entity.Debug.OnUseCrucifix = function()
+                        print("Custom crucifixion script here")
+                    end
+                ]]--
+                
+                ---====== Run entity ======---
+                
+                Spawner.runEntity(entity)
+            end
+            if EntityToSpawn == 7 then
+        
+                local Spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Entity%20Spawner/Source.lua"))()
+                
+                ---====== Create entity ======---
+                
+                local entity = Spawner.createEntity({
+                    CustomName = "sneak attack",
+                    Model = "rbxassetid://13251288361", -- Your entity's model url here ("rbxassetid://1234567890" or GitHub raw url)
+                    Speed = 100,
+                    MoveDelay = 2,
+                    HeightOffset = 0,
+                    CanKill = true,
+                    KillRange = 50,
+                    SpawnInFront = false,
+                    ShatterLights = false,
+                    FlickerLights = {
+                        Enabled = true,
+                        Duration = 1
+                    },
+                    Cycles = {
+                        Min = 6,
+                        Max = 6,
+                        Delay = 0
+                    },
+                    CamShake = {
+                        Enabled = true,
+                        Values = {1.5, 20, 0.1, 1},
+                        Range = 100
+                    },
+                    ResistCrucifix = false,
+                    BreakCrucifix = true,
+                    DeathMessage = {"you died to sneak attack","get better lol"},
+                    IsCuriousLight = false
+                })
+                
+                ---====== Debug ======---
+                
+                entity.Debug.OnEntitySpawned = function()
+                    print("Entity has spawned")
+                end
+                
+                entity.Debug.OnEntityDespawned = function()
+                    if HasSneakAttackAchievement == false then
+                        local Achievements = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Custom%20Achievements/Source.lua"))()
+
+                        -- Creates and displays your custom achievement
+                        Achievements.Get({
+                            Title = "Bounce Back",
+                            Desc = "Coming back for more!",
+                            Reason = "Survive Sneak Attack",
+                            Image = "https://cdn.discordapp.com/attachments/1080299690328858655/1100482115855994890/Png.png",
+                        })
+                        HasSneakAttackAchievement = true
+                    end
+                end
+                
+                entity.Debug.OnEntityStartMoving = function()
+                    print("Entity started moving")
+                end
+                
+                entity.Debug.OnEntityFinishedRebound = function()
+                    print("Entity finished rebound")
+                end
+                
+                entity.Debug.OnEntityEnteredRoom = function(room)
+                    print("Entity entered room:", room)
+                end
+                
+                entity.Debug.OnLookAtEntity = function()
+                    print("Player looking at entity")
+                end
+                
+                entity.Debug.OnDeath = function()
+                    HasSneakAttackAchievement = true
+                end
+                
+                --[[
+                    NOTE: By overwriting 'OnUseCrucifix', the default crucifixion will be ignored and this function will be called instead
+                
+                    entity.Debug.OnUseCrucifix = function()
+                        print("Custom crucifixion script here")
+                    end
+                ]]--
+                
+                ---====== Run entity ======---
+                
+                Spawner.runEntity(entity)
+            end
+            if EntityToSpawn == 8 then
+        
+                local Spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Entity%20Spawner/Source.lua"))()
+                
+                ---====== Create entity ======---
+                
+                local entity = Spawner.createEntity({
+                    CustomName = "speed",
+                    Model = "rbxassetid://13251398559", -- Your entity's model url here ("rbxassetid://1234567890" or GitHub raw url)
+                    Speed = 100,
+                    MoveDelay = 2,
+                    HeightOffset = 0,
+                    CanKill = true,
+                    KillRange = 50,
+                    SpawnInFront = false,
+                    ShatterLights = false,
+                    FlickerLights = {
+                        Enabled = true,
+                        Duration = 1
+                    },
+                    Cycles = {
+                        Min = 1,
+                        Max = 1,
+                        Delay = 2
+                    },
+                    CamShake = {
+                        Enabled = true,
+                        Values = {1.5, 20, 0.1, 1},
+                        Range = 100
+                    },
+                    ResistCrucifix = false,
+                    BreakCrucifix = true,
+                    DeathMessage = {"you died to speed","get better lol"},
+                    IsCuriousLight = false
+                })
+                
+                ---====== Debug ======---
+                
+                entity.Debug.OnEntitySpawned = function()
+                    print("Entity has spawned")
+                end
+                
+                entity.Debug.OnEntityDespawned = function()
+                    if HasSpeedAchievement == false then
+                        local Achievements = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Custom%20Achievements/Source.lua"))()
+
+                        -- Creates and displays your custom achievement
+                        Achievements.Get({
+                            Title = "Get away from my path!",
+                            Desc = "I'm running through here!",
+                            Reason = "Survive Speed.",
+                            Image = "https://cdn.discordapp.com/attachments/1080299690328858655/1100486089602498620/Png.png",
+                        })
+                        HasSpeedAchievement = true
+                    end
+                end
+                
+                entity.Debug.OnEntityStartMoving = function()
+                    print("Entity started moving")
+                end
+                
+                entity.Debug.OnEntityFinishedRebound = function()
+                    print("Entity finished rebound")
+                end
+                
+                entity.Debug.OnEntityEnteredRoom = function(room)
+                    print("Entity entered room:", room)
+                end
+                
+                entity.Debug.OnLookAtEntity = function()
+                    print("Player looking at entity")
+                end
+                
+                entity.Debug.OnDeath = function()
+                    HasSpeedAchievement = true
+                end
+                
+                --[[
+                    NOTE: By overwriting 'OnUseCrucifix', the default crucifixion will be ignored and this function will be called instead
+                
+                    entity.Debug.OnUseCrucifix = function()
+                        print("Custom crucifixion script here")
+                    end
+                ]]--
+                
+                ---====== Run entity ======---
+                
+                Spawner.runEntity(entity)
+            end
+            if EntityToSpawn == 9 then
+                local Spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors%20Entity%20Spawner/Source.lua"))()
+
+
+-- Create entity
+local entityTable = Spawner.createEntity({
+    CustomName = "boykisser", -- Custom name of your entity
+    Model = "rbxassetid://13261234226", -- Can be GitHub file or rbxassetid
+    Speed = 100, -- Percentage, 100 = default Rush speed
+    DelayTime = 2, -- Time before starting cycles (seconds)
+    HeightOffset = 0,
+    CanKill = true,
+    KillRange = 50,
+    BackwardsMovement = false,
+    BreakLights = true,
+    FlickerLights = {
+        true, -- Enabled/Disabled
+        1, -- Time (seconds)
+    },
+    Cycles = {
+        Min = 1,
+        Max = 4,
+        WaitTime = 2,
+    },
+    CamShake = {
+        true, -- Enabled/Disabled
+        {3.5, 20, 0.1, 1}, -- Shake values (don't change if you don't know)
+        100, -- Shake start distance (from Entity to you)
+    },
+    Jumpscare = {
+        true, -- Enabled/Disabled
+        {
+            Image1 = "rbxassetid://13261125708", -- Image1 url
+            Image2 = "rbxassetid://13261125708", -- Image2 url
+            Shake = true,
+            Sound1 = {
+                0, -- SoundId
+                { Volume = 10 }, -- Sound properties
+            },
+            Sound2 = {
+                4821247887, -- SoundId
+                { Volume = 10 }, -- Sound properties
+            },
+            Flashing = {
+                true, -- Enabled/Disabled
+                Color3.fromRGB(255, 255, 255), -- Color
+            },
+            Tease = {
+                true, -- Enabled/Disabled
+                Min = 1,
+                Max = 3,
+            },
+        },
+    },
+    CustomDialog = {"ooooo you like boys", "ur a boykisser"}, -- Custom death message
+})
+
+
+-----[[  Debug -=- Advanced  ]]-----
+entityTable.Debug.OnEntitySpawned = function()
+    print("Entity has spawned:", entityTable)
+end
+
+entityTable.Debug.OnEntityDespawned = function()
+    print("Entity has despawned:", entityTable)
+end
+
+entityTable.Debug.OnEntityStartMoving = function()
+    print("Entity has started moving:", entityTable)
+end
+
+entityTable.Debug.OnEntityFinishedRebound = function()
+    print("Entity has finished rebound:", entityTable)
+end
+
+entityTable.Debug.OnEntityEnteredRoom = function(room)
+    print("Entity:", entityTable, "has entered room:", room)
+end
+
+entityTable.Debug.OnLookAtEntity = function()
+    print("Player has looked at entity:", entityTable)
+end
+
+entityTable.Debug.OnDeath = function()
+    warn("Player has died.")
+end
+------------------------------------
+
+
+-- Run the created entity
+Spawner.runEntity(entityTable)
+            end
+            if EntityToSpawn == 10 then
+                local Spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Entity%20Spawner/Source.lua"))()
+                
+                local entity = Spawner.createEntity({
+                CustomName = "UR NOT EVEN HOLDING THE BOW RIGHT",
+                Model = "rbxassetid://13282055338", -- Your entity's model url here ("rbxassetid://1234567890" or GitHub raw url)
+                    Speed = 700,
+                    MoveDelay = 2,
+                    HeightOffset = 0,
+                    CanKill = true,
+                    KillRange = 50,
+                    SpawnInFront = false,
+                    ShatterLights = false,
+                    FlickerLights = {
+                        Enabled = true,
+                        Duration = 1
+                    },
+                    Cycles = {
+                        Min = 2,
+                        Max = 5,
+                        Delay = 0
+                    },
+                    CamShake = {
+                        Enabled = false,
+                        Values = {900, 900, 900, 900},
+                        Range = 100
+                    },
+                    ResistCrucifix = false,
+                    BreakCrucifix = true,
+                    DeathMessage = {"YOU DIED TO A BAD VIOLIN PLAYER", "BRUHHHHHHH", "😂😂😂😂😂😂😂😂"},
+                    IsCuriousLight = true
+                })
+                
+                ---====== Debug ======---
+                
+                entity.Debug.OnEntitySpawned = function()
+                    print("Entity has spawned")
+                end
+                
+                entity.Debug.OnEntityDespawned = function()
+                    print("Entity has despawned")
+                end
+                
+                entity.Debug.OnEntityStartMoving = function()
+                    print("Entity started moving")
+                end
+                
+                entity.Debug.OnEntityFinishedRebound = function()
+                    print("Entity finished rebound")
+                end
+                
+                entity.Debug.OnEntityEnteredRoom = function(room)
+                    print("Entity entered room:", room)
+                end
+                
+                entity.Debug.OnLookAtEntity = function()
+                    print("Player looking at entity")
+                end
+                
+                entity.Debug.OnDeath = function()
+                    print("Player has died")
+                end
+                
+                --[[
+                    NOTE: By overwriting 'OnUseCrucifix', the default crucifixion will be ignored and this function will be called instead
+                
+                    entity.Debug.OnUseCrucifix = function()
+                        print("Custom crucifixion script here")
+                    end
+                ]]--
+                Spawner.runEntity(entity)
+                end   
+                if EntityToSpawn == 11 then
+        
+                    local Spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Entity%20Spawner/Source.lua"))()
+                    
+                    ---====== Create entity ======---
+                    
+                    local entity = Spawner.createEntity({
+                        CustomName = "rushy",
+                        Model = "rbxassetid://13282091234", -- Your entity's model url here ("rbxassetid://1234567890" or GitHub raw url)
+                        Speed = 100,
+                        MoveDelay = 2,
+                        HeightOffset = 0,
+                        CanKill = true,
+                        KillRange = 50,
+                        SpawnInFront = false,
+                        ShatterLights = false,
+                        FlickerLights = {
+                            Enabled = true,
+                            Duration = 1
+                        },
+                        Cycles = {
+                            Min = 1,
+                            Max = 1,
+                            Delay = 0
+                        },
+                        CamShake = {
+                            Enabled = false,
+                            Values = {900, 900, 900, 900},
+                            Range = 100
+                        },
+                        ResistCrucifix = false,
+                        BreakCrucifix = true,
+                        DeathMessage = {"You died to rushy...", "he doesnt come that often. its rare and you died to it.", "L bozo","😂😂😂😂😂😂😂😂😂😂😂"},
+                        IsCuriousLight = false
+                    })
+                    
+                    ---====== Debug ======---
+                    
+                    entity.Debug.OnEntitySpawned = function()
+                        print("Entity has spawned")
+                    end
+                    
+                    entity.Debug.OnEntityDespawned = function()
+                        print("Entity has despawned")
+                    end
+                    
+                    entity.Debug.OnEntityStartMoving = function()
+                        print("Entity started moving")
+                    end
+                    
+                    entity.Debug.OnEntityFinishedRebound = function()
+                        print("Entity finished rebound")
+                    end
+                    
+                    entity.Debug.OnEntityEnteredRoom = function(room)
+                        print("Entity entered room:", room)
+                    end
+                    
+                    entity.Debug.OnLookAtEntity = function()
+                        print("Player looking at entity")
+                    end
+                    
+                    entity.Debug.OnDeath = function()
+                        print("Player has died")
+                    end
+                    
+                    --[[
+                        NOTE: By overwriting 'OnUseCrucifix', the default crucifixion will be ignored and this function will be called instead
+                    
+                        entity.Debug.OnUseCrucifix = function()
+                            print("Custom crucifixion script here")
+                        end
+                    ]]--
+                    
+                    ---====== Run entity ======---
+                    
+                    Spawner.runEntity(entity)
+                end
+                if EntityToSpawn == 12 then
+        
+                    local Spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Entity%20Spawner/Source.lua"))()
+                    
+                    ---====== Create entity ======---
+                    
+                    local entity = Spawner.createEntity({
+                        CustomName = "A-60",
+                        Model = "rbxassetid://13288389447", -- Your entity's model url here ("rbxassetid://1234567890" or GitHub raw url)
+                        Speed = 1000,
+                        MoveDelay = 2,
+                        HeightOffset = 0,
+                        CanKill = true,
+                        KillRange = 50,
+                        SpawnInFront = false,
+                        ShatterLights = false,
+                        FlickerLights = {
+                            Enabled = true,
+                            Duration = 1
+                        },
+                        Cycles = {
+                            Min = 1,
+                            Max = 8,
+                            Delay = 0
+                        },
+                        CamShake = {
+                            Enabled = true,
+                            Values = {3.5, 900, 0.1, 1},
+                            Range = 100
+                        },
+                        ResistCrucifix = false,
+                        BreakCrucifix = true,
+                        DeathMessage = {"You died to A-60...", "Wait... What?", "How did A-60 make it to the hotel?","Well, use the same tactics you do with Ambush."},
+                        IsCuriousLight = false
+                    })
+                    
+                    ---====== Debug ======---
+                    
+                    entity.Debug.OnEntitySpawned = function()
+                        print("Entity has spawned")
+                    end
+                    
+                    entity.Debug.OnEntityDespawned = function()
+                        print("Entity has despawned")
+                    end
+                    
+                    entity.Debug.OnEntityStartMoving = function()
+                        print("Entity started moving")
+                    end
+                    
+                    entity.Debug.OnEntityFinishedRebound = function()
+                        print("Entity finished rebound")
+                    end
+                    
+                    entity.Debug.OnEntityEnteredRoom = function(room)
+                        print("Entity entered room:", room)
+                    end
+                    
+                    entity.Debug.OnLookAtEntity = function()
+                        print("Player looking at entity")
+                    end
+                    
+                    entity.Debug.OnDeath = function()
+                        print("Player has died")
+                    end
+                    
+                    --[[
+                        NOTE: By overwriting 'OnUseCrucifix', the default crucifixion will be ignored and this function will be called instead
+                    
+                        entity.Debug.OnUseCrucifix = function()
+                            print("Custom crucifixion script here")
+                        end
+                    ]]--
+                    
+                    ---====== Run entity ======---
+                    
+                    Spawner.runEntity(entity)
+                end
+                if EntityToSpawn == 13 then
+        
+                    local Spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Entity%20Spawner/Source.lua"))()
+                    
+                    local WarningSound = Instance.new("Sound")
+                    WarningSound.Parent = workspace
+                    WarningSound.SoundId = "rbxassetid://8680141474"
+                    WarningSound.Volume = workspace.Ambience_Ambush.Volume
+                    WarningSound:Play()
+                    workspace.Ambience_Ambush:Play()
+                    wait(3)
+                    WarningSound:Destroy()
+                    ---====== Create entity ======---
+                    
+                    local entity = Spawner.createEntity({
+                        CustomName = "laughing ambush",
+                        Model = "rbxassetid://13293983665", -- Your entity's model url here ("rbxassetid://1234567890" or GitHub raw url)
+                        Speed = 300,
+                        MoveDelay = 0,
+                        HeightOffset = 0,
+                        CanKill = true,
+                        KillRange = 50,
+                        SpawnInFront = false,
+                        ShatterLights = false,
+                        FlickerLights = {
+                            Enabled = false,
+                            Duration = 1
+                        },
+                        Cycles = {
+                            Min = 1,
+                            Max = 6,
+                            Delay = 0
+                        },
+                        CamShake = {
+                            Enabled = true,
+                            Values = {3.5, 900, 0.1, 1},
+                            Range = 100
+                        },
+                        ResistCrucifix = false,
+                        BreakCrucifix = true,
+                        DeathMessage = {"XD"},
+                        IsCuriousLight = false
+                    })
+                    
+                    ---====== Debug ======---
+                    
+                    entity.Debug.OnEntitySpawned = function()
+                        print("Entity has spawned")
+                    end
+                    
+                    entity.Debug.OnEntityDespawned = function()
+                        print("Entity has despawned")
+                    end
+                    
+                    entity.Debug.OnEntityStartMoving = function()
+                        print("Entity started moving")
+                    end
+                    
+                    entity.Debug.OnEntityFinishedRebound = function()
+                        print("Entity finished rebound")
+                    end
+                    
+                    entity.Debug.OnEntityEnteredRoom = function(room)
+                        print("Entity entered room:", room)
+                    end
+                    
+                    entity.Debug.OnLookAtEntity = function()
+                        print("Player looking at entity")
+                    end
+                    
+                    entity.Debug.OnDeath = function()
+                        print("Player has died")
+                    end
+                    
+                    --[[
+                        NOTE: By overwriting 'OnUseCrucifix', the default crucifixion will be ignored and this function will be called instead
+                    
+                        entity.Debug.OnUseCrucifix = function()
+                            print("Custom crucifixion script here")
+                        end
+                    ]]--
+                    
+                    ---====== Run entity ======---
+                    
+                    Spawner.runEntity(entity)
+                end
+                if EntityToSpawn == 15 then
+        
+                    local Warning = game:GetObjects("rbxassetid://13317082003")[1]
+                    Warning.Parent = game.Lighting
+                    local Spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Entity%20Spawner/Source.lua"))()
+                    
+                    ---====== Create entity ======---
+                    
+                    local entity = Spawner.createEntity({
+                        CustomName = "Surge",
+                        Model = "rbxassetid://13294998205", -- Your entity's model url here ("rbxassetid://1234567890" or GitHub raw url)
+                        Speed = 150,
+                        MoveDelay = 5,
+                        HeightOffset = 0,
+                        CanKill = true,
+                        KillRange = 50,
+                        SpawnInFront = false,
+                        ShatterLights = false,
+                        FlickerLights = {
+                            Enabled = false,
+                            Duration = 1
+                        },
+                        Cycles = {
+                            Min = 1,
+                            Max = 1,
+                            Delay = 2
+                        },
+                        CamShake = {
+                            Enabled = true,
+                            Values = {3.5, 900, 0.1, 1},
+                            Range = 100
+                        },
+                        ResistCrucifix = false,
+                        BreakCrucifix = true,
+                        DeathMessage = {"You died to who you call Surge.","Once the lights turn off, before turning green, hide!","It's known for being fast, so hide quickly."},
+                        IsCuriousLight = false
+                    })
+                    
+                    ---====== Debug ======---
+                    
+                    entity.Debug.OnEntitySpawned = function()
+                        print("Entity has spawned")
+                    end
+                    
+                    entity.Debug.OnEntityDespawned = function()
+                        Warning:Destroy()
+                        if HasSurgeAchievement == false then
+                            local Achievements = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Custom%20Achievements/Source.lua"))()
+    
+                            -- Creates and displays your custom achievement
+                            Achievements.Get({
+                                Title = "Hide In Time",
+                                Desc = "You better find a hiding spot quickly!",
+                                Reason = "Survive Surge.",
+                                Image = "https://cdn.discordapp.com/attachments/1080299690328858655/1102038885732728934/120.png",
+                            })
+                            HasSurgeAchievement = true
+                        end
+                    end
+                    
+                    entity.Debug.OnEntityStartMoving = function()
+                        print("Entity started moving")
+                    end
+                    
+                    entity.Debug.OnEntityFinishedRebound = function()
+                        print("Entity finished rebound")
+                    end
+                    
+                    entity.Debug.OnEntityEnteredRoom = function(room)
+                        print("Entity entered room:", room)
+                    end
+                    
+                    entity.Debug.OnLookAtEntity = function()
+                        print("Player looking at entity")
+                    end
+                    
+                    entity.Debug.OnDeath = function()
+                        HasSurgeAchievement = true
+                    end
+                    
+                    --[[
+                        NOTE: By overwriting 'OnUseCrucifix', the default crucifixion will be ignored and this function will be called instead
+                    
+                        entity.Debug.OnUseCrucifix = function()
+                            print("Custom crucifixion script here")
+                        end
+                    ]]--
+                    
+                    ---====== Run entity ======---
+                    
+                    Spawner.runEntity(entity)
+                end
+                if EntityToSpawn == 14 then
+        
+                    local Spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Entity%20Spawner/Source.lua"))()
+                    
+                    ---====== Create entity ======---
+                    
+                    local entity = Spawner.createEntity({
+                        CustomName = "Whiz",
+                        Model = "rbxassetid://13260372196", -- Your entity's model url here ("rbxassetid://1234567890" or GitHub raw url)
+                        Speed = 300,
+                        MoveDelay = 0,
+                        HeightOffset = 0,
+                        CanKill = true,
+                        KillRange = 50,
+                        SpawnInFront = false,
+                        ShatterLights = false,
+                        FlickerLights = {
+                            Enabled = true,
+                            Duration = 2
+                        },
+                        Cycles = {
+                            Min = 3,
+                            Max = 3,
+                            Delay = 2
+                        },
+                        CamShake = {
+                            Enabled = true,
+                            Values = {3.5, 900, 0.1, 1},
+                            Range = 100
+                        },
+                        ResistCrucifix = false,
+                        BreakCrucifix = true,
+                        DeathMessage = {"You died to Whiz...","Wait...","How did Whiz make it to the hotel?","He's supposed to be in the sewers.","Well, use the same tactics you use with Ambush."},
+                        IsCuriousLight = false
+                    })
+                    
+                    ---====== Debug ======---
+                    
+                    entity.Debug.OnEntitySpawned = function()
+                        print("Entity has spawned")
+                    end
+                    
+                    entity.Debug.OnEntityDespawned = function()
+                        print("Entity has despawned")
+                    end
+                    
+                    entity.Debug.OnEntityStartMoving = function()
+                        print("Entity started moving")
+                    end
+                    
+                    entity.Debug.OnEntityFinishedRebound = function()
+                        print("Entity finished rebound")
+                    end
+                    
+                    entity.Debug.OnEntityEnteredRoom = function(room)
+                        print("Entity entered room:", room)
+                    end
+                    
+                    entity.Debug.OnLookAtEntity = function()
+                        print("Player looking at entity")
+                    end
+                    
+                    entity.Debug.OnDeath = function()
+                        print("Player has died")
+                    end
+                    
+                    --[[
+                        NOTE: By overwriting 'OnUseCrucifix', the default crucifixion will be ignored and this function will be called instead
+                    
+                        entity.Debug.OnUseCrucifix = function()
+                            print("Custom crucifixion script here")
+                        end
+                    ]]--
+                    
+                    ---====== Run entity ======---
+                    
+                    Spawner.runEntity(entity)
+                end
+                if EntityToSpawn == 16 then
+                    
+                    local Spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Entity%20Spawner/Source.lua"))()
+                    
+                    ---====== Create entity ======---
+                    
+                    local entity = Spawner.createEntity({
+                        CustomName = "Trollface",
+                        Model = "rbxassetid://13301243583", -- Your entity's model url here ("rbxassetid://1234567890" or GitHub raw url)
+                        Speed = 500,
+                        MoveDelay = 2,
+                        HeightOffset = 0,
+                        CanKill = true,
+                        KillRange = 50,
+                        SpawnInFront = false,
+                        ShatterLights = true,
+                        FlickerLights = {
+                            Enabled = true,
+                            Duration = 1
+                        },
+                        Cycles = {
+                            Min = 1,
+                            Max = 1,
+                            Delay = 2
+                        },
+                        CamShake = {
+                            Enabled = true,
+                            Values = {3.5, 9999, 0.1, 1},
+                            Range = 100
+                        },
+                        ResistCrucifix = true,
+                        BreakCrucifix = true,
+                        DeathMessage = {"Uhh...","Alright."},
+                        IsCuriousLight = false
+                    })
+                    
+                    ---====== Debug ======---
+                    
+                    entity.Debug.OnEntitySpawned = function()
+                        print("Entity has spawned")
+                    end
+                    
+                    entity.Debug.OnEntityDespawned = function()
+                        print("LOLZERS")
+                    end
+                    
+                    entity.Debug.OnEntityStartMoving = function()
+                        print("Entity started moving")
+                    end
+                    
+                    entity.Debug.OnEntityFinishedRebound = function()
+                        print("Entity finished rebound")
+                    end
+                    
+                    entity.Debug.OnEntityEnteredRoom = function(room)
+                        print("Entity entered room:", room)
+                    end
+                    
+                    entity.Debug.OnLookAtEntity = function()
+                        print("Player looking at entity")
+                    end
+                    
+                    entity.Debug.OnDeath = function()
+                        print("LOLZERS")
+                    end
+                    
+                    --[[
+                        NOTE: By overwriting 'OnUseCrucifix', the default crucifixion will be ignored and this function will be called instead
+                    
+                        entity.Debug.OnUseCrucifix = function()
+                            print("Custom crucifixion script here")
+                        end
+                    ]]--
+                    
+                    ---====== Run entity ======---
+                    
+                    Spawner.runEntity(entity)
+                end
+                if EntityToSpawn == 17 then
+        
+                    local Spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Entity%20Spawner/Source.lua"))()
+                    
+                    ---====== Create entity ======---
+                    
+                    local entity = Spawner.createEntity({
+                        CustomName = "laughing rush",
+                        Model = "rbxassetid://13305697512", -- Your entity's model url here ("rbxassetid://1234567890" or GitHub raw url)
+                        Speed = 100,
+                        MoveDelay = 0,
+                        HeightOffset = 0,
+                        CanKill = true,
+                        KillRange = 50,
+                        SpawnInFront = false,
+                        ShatterLights = true,
+                        FlickerLights = {
+                            Enabled = true,
+                            Duration = 1
+                        },
+                        Cycles = {
+                            Min = 1,
+                            Max = 1,
+                            Delay = 2
+                        },
+                        CamShake = {
+                            Enabled = true,
+                            Values = {3.5, 900, 0.1, 1},
+                            Range = 100
+                        },
+                        ResistCrucifix = false,
+                        BreakCrucifix = true,
+                        DeathMessage = {"LOL"},
+                        IsCuriousLight = false
+                    })
+                    
+                    ---====== Debug ======---
+                    
+                    entity.Debug.OnEntitySpawned = function()
+                        print("Entity has spawned")
+                    end
+                    
+                    entity.Debug.OnEntityDespawned = function()
+                        print("Entity has despawned")
+                    end
+                    
+                    entity.Debug.OnEntityStartMoving = function()
+                        print("Entity started moving")
+                    end
+                    
+                    entity.Debug.OnEntityFinishedRebound = function()
+                        print("Entity finished rebound")
+                    end
+                    
+                    entity.Debug.OnEntityEnteredRoom = function(room)
+                        print("Entity entered room:", room)
+                    end
+                    
+                    entity.Debug.OnLookAtEntity = function()
+                        print("Player looking at entity")
+                    end
+                    
+                    entity.Debug.OnDeath = function()
+                        print("Player has died")
+                    end
+                    
+                    --[[
+                        NOTE: By overwriting 'OnUseCrucifix', the default crucifixion will be ignored and this function will be called instead
+                    
+                        entity.Debug.OnUseCrucifix = function()
+                            print("Custom crucifixion script here")
+                        end
+                    ]]--
+                    
+                    ---====== Run entity ======---
+                    
+                    Spawner.runEntity(entity)
+                end
+                if EntityToSpawn == 18 then
+        
+                    local Spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Entity%20Spawner/Source.lua"))()
+                    
+                    ---====== Create entity ======---
+                    
+                    local entity = Spawner.createEntity({
+                        CustomName = "A-120",
+                        Model = "rbxassetid://13316793516", -- Your entity's model url here ("rbxassetid://1234567890" or GitHub raw url)
+                        Speed = 100,
+                        MoveDelay = 2,
+                        HeightOffset = 2,
+                        CanKill = true,
+                        KillRange = 50,
+                        SpawnInFront = true,
+                        ShatterLights = false,
+                        FlickerLights = {
+                            Enabled = false,
+                            Duration = 1
+                        },
+                        Cycles = {
+                            Min = 1,
+                            Max = 1,
+                            Delay = 0
+                        },
+                        CamShake = {
+                            Enabled = true,
+                            Values = {3.5, 20, 0.1, 1},
+                            Range = 100
+                        },
+                        ResistCrucifix = false,
+                        BreakCrucifix = true,
+                        DeathMessage = {"You died to A-120...","Wait... What?","How did A-120 make it to the hotel?","Well, use the same tactics you do with Rush."},
+                        IsCuriousLight = false
+                    })
+                    
+                    ---====== Debug ======---
+                    
+                    entity.Debug.OnEntitySpawned = function()
+                        print("Entity has spawned")
+                    end
+                    
+                    entity.Debug.OnEntityDespawned = function()
+                        print("Entity has despawned")
+                    end
+                    
+                    entity.Debug.OnEntityStartMoving = function()
+                        print("Entity started moving")
+                    end
+                    
+                    entity.Debug.OnEntityFinishedRebound = function()
+                        print("Entity finished rebound")
+                    end
+                    
+                    entity.Debug.OnEntityEnteredRoom = function(room)
+                        print("Entity entered room:", room)
+                    end
+                    
+                    entity.Debug.OnLookAtEntity = function()
+                        print("Player looking at entity")
+                    end
+                    
+                    entity.Debug.OnDeath = function()
+                        print("Player has died")
+                    end
+                    
+                    --[[
+                        NOTE: By overwriting 'OnUseCrucifix', the default crucifixion will be ignored and this function will be called instead
+                    
+                        entity.Debug.OnUseCrucifix = function()
+                            print("Custom crucifixion script here")
+                        end
+                    ]]--
+                    
+                    ---====== Run entity ======---
+                    
+                    Spawner.runEntity(entity)
+                end
+                if EntityToSpawn == 19 then
+                    whisperer.Enabled = true
+                    WhispererTalking:Play()
+                end
+                if EntityToSpawn == 20 then
+                    local a = require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Modules["A90"])(require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game))()         
+                end
+                if EntityToSpawn == 21 then
+                    require(game.ReplicatedStorage.ClientModules.EntityModules.Shade).stuff(require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game),workspace.CurrentRooms[game.Players.LocalPlayer:GetAttribute("CurrentRoom")])         
+                end
+                if EntityToSpawn == 22 then
+                    local EntitySpawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/dreadmania/Scripts/main/Spawner_V2.lua"))()
+                    local Configuration = {
+                        Kill = false, -- change to "Damage = 10," for eyes, doesnt work on other entities
+                        Speed = 160, -- 60 for rush, doesnt work on other entities
+                        Time = 3 -- 5 for rush, doesnt work on other entities
+                    }
+                     
+                    EntitySpawner:Spawn("Jack", Configuration)
+                end
+                if EntityToSpawn == 23 then
+        
+                    local Spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Entity%20Spawner/Source.lua"))()
+                    
+                    ---====== Create entity ======---
+                    
+                    local entity = Spawner.createEntity({
+                        CustomName = "B-60",
+                        Model = "rbxassetid://13336898692", -- Your entity's model url here ("rbxassetid://1234567890" or GitHub raw url)
+                        Speed = 100,
+                        MoveDelay = 2,
+                        HeightOffset = 2,
+                        CanKill = true,
+                        KillRange = 50,
+                        SpawnInFront = true,
+                        ShatterLights = false,
+                        FlickerLights = {
+                            Enabled = false,
+                            Duration = 1
+                        },
+                        Cycles = {
+                            Min = 1,
+                            Max = 1,
+                            Delay = 0
+                        },
+                        CamShake = {
+                            Enabled = true,
+                            Values = {3.5, 20, 0.1, 1},
+                            Range = 100
+                        },
+                        ResistCrucifix = false,
+                        BreakCrucifix = true,
+                        DeathMessage = {"You died to B-60...","Wait... What?","How did B-60 make it to the hotel?","The fanmade stuff is getting out of hand...","Well, use the same tactics you do with Rush."},
+                        IsCuriousLight = false
+                    })
+                    
+                    ---====== Debug ======---
+                    
+                    entity.Debug.OnEntitySpawned = function()
+                        print("Entity has spawned")
+                    end
+                    
+                    entity.Debug.OnEntityDespawned = function()
+                        print("Entity has despawned")
+                    end
+                    
+                    entity.Debug.OnEntityStartMoving = function()
+                        print("Entity started moving")
+                    end
+                    
+                    entity.Debug.OnEntityFinishedRebound = function()
+                        print("Entity finished rebound")
+                    end
+                    
+                    entity.Debug.OnEntityEnteredRoom = function(room)
+                        print("Entity entered room:", room)
+                    end
+                    
+                    entity.Debug.OnLookAtEntity = function()
+                        print("Player looking at entity")
+                    end
+                    
+                    entity.Debug.OnDeath = function()
+                        print("Player has died")
+                    end
+                    
+                    --[[
+                        NOTE: By overwriting 'OnUseCrucifix', the default crucifixion will be ignored and this function will be called instead
+                    
+                        entity.Debug.OnUseCrucifix = function()
+                            print("Custom crucifixion script here")
+                        end
+                    ]]--
+                    
+                    ---====== Run entity ======---
+                    
+                    Spawner.runEntity(entity)
+                end
+                if EntityToSpawn == 24 and Woebegone == false and WoebegoneProgress == 0 then
+        
+                    local Spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Entity%20Spawner/Source.lua"))()
+                    
+                    local Warning = game:GetObjects("rbxassetid://")[1]
+                    local Sound = Instance.new("Sound")
+                    Warning.Parent = game.Lighting
+                    Sound.SoundId = "rbxassetid://166047422"
+                    Sound.Parent = workspace
+                    Sound:Play()
+                    wait(0.1)
+                    Warning:Destroy()
+                    wait(1.305)
+                    Sound:Destroy()
+                    
+                    ---====== Create entity ======---
+                    
+                    local entity = Spawner.createEntity({
+                        CustomName = "Woebegone",
+                        Model = "rbxassetid://13233447962", -- Your entity's model url here ("rbxassetid://1234567890" or GitHub raw url)
+                        Speed = 100,
+                        MoveDelay = 0,
+                        HeightOffset = 0,
+                        CanKill = true,
+                        KillRange = 50,
+                        SpawnInFront = false,
+                        ShatterLights = false,
+                        FlickerLights = {
+                            Enabled = false,
+                            Duration = 1
+                        },
+                        Cycles = {
+                            Min = 1,
+                            Max = 1,
+                            Delay = 0
+                        },
+                        CamShake = {
+                            Enabled = false,
+                            Values = {900, 900, 900, 900},
+                            Range = 100
+                        },
+                        ResistCrucifix = false,
+                        BreakCrucifix = true,
+                        DeathMessage = {"S̵̼̖͕̮̐̓Ŏ̸̡͉͈͖̈́M̶̟̣̅̒͌E̴͎̞̝̩̤͛T̷͉̉̃̚H̸̪̺̦͇͖̏I̵̧̖͎̍N̸̡̞͈̒G̵̘͍͓̩̗͋͑ ̷̧͂͝B̴͍̾À̵̬̘͝Ḓ̴̠̰͋̇̉̉ ̸̼͇̭̑̅͂̈́W̷̰̅̀̂͘Ỉ̷̖̖͓̺̽̅̕̚L̴̹͚̮̤̈L̵̹̗̝̺͂͂ ̸͖͙͙̪̘̍̋H̶̜͖͖̦̯͋͑̀̉Ȃ̷̛̱̞͝P̸̬̪͊̀̒͋͝P̷̜̯̏E̷̦̼̒N̴̩̲̟̗͕͝ ̵̖̖̲̉́S̴̭̩͓̒̑̆̽̄O̸͍̔̊͗̔O̴̲̖͍͉̊́͛͆̈́N̷͕͙̏̌͊̿̕.̴̓͌͜", "Use the same tactics that you use with Rush and Ambush!"},
+                        IsCuriousLight = false
+                    })
+                    
+                    ---====== Debug ======---
+                    
+                    entity.Debug.OnEntitySpawned = function()
+                        print("Entity has spawned")
+                    end
+                    
+                    entity.Debug.OnEntityDespawned = function()
+                         WoebegoneProgress = WoebegoneProgress + 1
+                    end
+                    
+                    entity.Debug.OnEntityStartMoving = function()
+                        print("Entity started moving")
+                    end
+                    
+                    entity.Debug.OnEntityFinishedRebound = function()
+                        print("Entity finished rebound")
+                    end
+                    
+                    entity.Debug.OnEntityEnteredRoom = function(room)
+                        print("Entity entered room:", room)
+                    end
+                    
+                    entity.Debug.OnLookAtEntity = function()
+                        print("Player looking at entity")
+                    end
+                    
+                    entity.Debug.OnDeath = function()
+                        print("Player has died")
+                    end
+                    
+                    --[[
+                        NOTE: By overwriting 'OnUseCrucifix', the default crucifixion will be ignored and this function will be called instead
+                    
+                        entity.Debug.OnUseCrucifix = function()
+                            print("Custom crucifixion script here")
+                        end
+                    ]]--
+                    
+                    ---====== Run entity ======---
+                    
+                   Spawner.runEntity(entity)
+                end
+    end
+end)
+while true do
+    wait(0.1)
+    if Sprinting == true then
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 21
+    end
+end
