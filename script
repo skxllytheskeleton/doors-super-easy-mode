@@ -1713,10 +1713,10 @@ Spawner.runEntity(entityTable)
                         HeightOffset = 2,
                         CanKill = true,
                         KillRange = 50,
-                        SpawnInFront = true,
+                        SpawnInFront = false,
                         ShatterLights = false,
                         FlickerLights = {
-                            Enabled = false,
+                            Enabled = true,
                             Duration = 1
                         },
                         Cycles = {
