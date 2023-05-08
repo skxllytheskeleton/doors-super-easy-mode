@@ -1,4 +1,4 @@
---super easy entity and item spawner
+--entity spawnz
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 local Window = OrionLib:MakeWindow({Name = "SUPER EASY ENTITY AND ITEM SPAWNER", HidePremium = false, SaveConfig = false})
 
@@ -12,6 +12,11 @@ local Tab2 = Window:MakeTab({
 	Icon = "rbxassetid://11374263930",
 	PremiumOnly = false
 })
+
+game.ReplicatedStorage.GameData.LatestRoom.Changed:Connect(function()
+    whisperer.Enabled = false
+    WhispererTalking:Stop()
+end)
 
 local whisperer = Instance.new("ScreenGui")
 local Whisperer = Instance.new("ImageLabel")
@@ -1838,4 +1843,3 @@ Tab2:AddButton({
         end)
   	end    
 })
-OrionLib:Init()
