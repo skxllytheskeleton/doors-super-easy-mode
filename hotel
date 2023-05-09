@@ -1,10 +1,11 @@
---SUPER EASY MODE!!!
+--SUPER EASY MODE!!! (hotel)
 -- customization
 local SpawnWithCrucifix = false -- set to true if u want (doesnt work on real entities)
 -- set-up
 local Sprinting = false
 local Woebegone = false
 local WoebegoneProgress = 0
+local UserInputService = game:GetService("UserInputService")
 local Mouse = game:GetService("Players").LocalPlayer:GetMouse()
 local Humanoid = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
 local HasSilenceAchievement = false
@@ -14,6 +15,7 @@ local HasSpeedAchievement = false
 local HasSurgeAchievement = false
 local HasB60Achievement = false
 local HasWoebegoneAchievement = false
+local HasBarrageAchievement = false
 local SolarisLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/sol"))()
 SolarisLib:Notification("super easy mode","it has been turned on!")
 
@@ -135,6 +137,33 @@ game:GetService("Workspace").CurrentRooms["0"].Assets["Desk_Bell"].Base.Interact
 game:GetService("Workspace").CurrentRooms["0"].Assets["Desk_Bell"].InteractPrompt.Triggered:Connect(function()
     game.Players.LocalPlayer.Character.Humanoid.Health = 0
 end)
+-- mobile sprinting
+if UserInputService.TouchEnabled then
+    local SprintButtonGui = Instance.new("ScreenGui")
+    local SprintButton = Instance.new("TextButton")
+
+
+    SprintButtonGui.Name = "SprintButtonGui"
+    SprintButtonGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+    SprintButtonGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+    SprintButton.Name = "SprintButton"
+    SprintButton.Parent = SprintButtonGui
+    SprintButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    SprintButton.BackgroundTransparency = 1.000
+    SprintButton.Position = UDim2.new(0, 0, 0.55261296, 0)
+    SprintButton.Size = UDim2.new(0, 200, 0, 50)
+    SprintButton.Font = Enum.Font.Cartoon
+    SprintButton.Text = "Toggle Sprint"
+    SprintButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    SprintButton.TextScaled = true
+    SprintButton.TextSize = 14.000
+    SprintButton.TextWrapped = true
+    SprintButton.MouseButton1Click:Connect(function()
+        Sprinting = not Sprinting
+    end)
+end
+-- pc sprinting
 Mouse.KeyDown:Connect(function(key)
     if key == "q" then
         Sprinting = true
@@ -151,7 +180,7 @@ repeat
     wait(0.1)
 until game:GetService("ReplicatedStorage").GameData.LatestRoom.Value > 3
     game:GetService("ReplicatedStorage").GameData.LatestRoom.Changed:Connect(function()
-        if Woebegone == true and WoebegoneProgress == 4 then
+        --[[if Woebegone == true and WoebegoneProgress == 4 then
             Woebegone = false
             WoebegoneProgress = 0
             if HasWoebegoneAchievement == false then
@@ -169,7 +198,7 @@ until game:GetService("ReplicatedStorage").GameData.LatestRoom.Value > 3
         end
         if Woebegone == true then
 
-        end
+        end]]
         whisperer.Enabled = false
         WhispererTalking:Stop()
         local SpawnChance = math.random(1,20)
@@ -1777,7 +1806,7 @@ Spawner.runEntity(entityTable)
                     
                     Spawner.runEntity(entity)
                 end
-                if EntityToSpawn == 24 and Woebegone == false and WoebegoneProgress == 0 then
+                --[[if EntityToSpawn == 24 and Woebegone == false and WoebegoneProgress == 0 then
         
                     local Spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Entity%20Spawner/Source.lua"))()
                     
@@ -1854,6 +1883,299 @@ Spawner.runEntity(entityTable)
                         print("Player has died")
                     end
                     
+                    --
+                        NOTE: By overwriting 'OnUseCrucifix', the default crucifixion will be ignored and this function will be called instead
+                    
+                        entity.Debug.OnUseCrucifix = function()
+                            print("Custom crucifixion script here")
+                        end
+                    --
+                    
+                    ---====== Run entity ======---
+                    
+                   Spawner.runEntity(entity)
+                end]]
+                if EntityToSpawn == 24 then
+                    -- barrage
+                    ---====== Define spawner ======---
+
+                    local Spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Entity%20Spawner/Source.lua"))()
+
+                    ---====== Create entity ======---
+
+                    local entity = Spawner.createEntity({
+                        CustomName = "Barrage",
+                        Model = "rbxassetid://13396010379", -- Your entity's model url here ("rbxassetid://1234567890" or GitHub raw url)
+                        Speed = 500,
+                        MoveDelay = 2,
+                        HeightOffset = 0,
+                        CanKill = true,
+                        KillRange = 50,
+                        SpawnInFront = false,
+                        ShatterLights = true,
+                        FlickerLights = {
+                            Enabled = true,
+                            Duration = 1
+                        },
+                        Cycles = {
+                            Min = 1,
+                            Max = 1,
+                            Delay = 3
+                        },
+                        CamShake = {
+                            Enabled = true,
+                            Values = {1.5, 20, 0.1, 1},
+                            Range = 100
+                        },
+                        ResistCrucifix = false,
+                        BreakCrucifix = true,
+                        DeathMessage = {"You died to Barrage.", "The entity will create 4 other clones of itself.", "Try not to leave the hiding spot too early or stay in for too long."},
+                        IsCuriousLight = false
+                    })
+                    local entity2 = Spawner.createEntity({
+                        CustomName = "Barrage",
+                        Model = "rbxassetid://13396010379", -- Your entity's model url here ("rbxassetid://1234567890" or GitHub raw url)
+                        Speed = 500,
+                        MoveDelay = 2,
+                        HeightOffset = 0,
+                        CanKill = true,
+                        KillRange = 50,
+                        SpawnInFront = false,
+                        ShatterLights = true,
+                        FlickerLights = {
+                            Enabled = false,
+                            Duration = 1
+                        },
+                        Cycles = {
+                            Min = 1,
+                            Max = 1,
+                            Delay = 3
+                        },
+                        CamShake = {
+                            Enabled = true,
+                            Values = {1.5, 20, 0.1, 1},
+                            Range = 100
+                        },
+                        ResistCrucifix = false,
+                        BreakCrucifix = true,
+                        DeathMessage = {"You died to Barrage.", "The entity will create 4 other clones of itself.", "Try not to leave the hiding spot too early or stay in for too long."},
+                        IsCuriousLight = false
+                    })
+                    local entity3 = Spawner.createEntity({
+                        CustomName = "Barrage",
+                        Model = "rbxassetid://13396010379", -- Your entity's model url here ("rbxassetid://1234567890" or GitHub raw url)
+                        Speed = 500,
+                        MoveDelay = 2,
+                        HeightOffset = 0,
+                        CanKill = true,
+                        KillRange = 50,
+                        SpawnInFront = false,
+                        ShatterLights = true,
+                        FlickerLights = {
+                            Enabled = false,
+                            Duration = 1
+                        },
+                        Cycles = {
+                            Min = 1,
+                            Max = 1,
+                            Delay = 3
+                        },
+                        CamShake = {
+                            Enabled = true,
+                            Values = {1.5, 20, 0.1, 1},
+                            Range = 100
+                        },
+                        ResistCrucifix = false,
+                        BreakCrucifix = true,
+                        DeathMessage = {"You died to Barrage.", "The entity will create 4 other clones of itself.", "Try not to leave the hiding spot too early or stay in for too long."},
+                        IsCuriousLight = false
+                    })
+                    local entity4 = Spawner.createEntity({
+                        CustomName = "Barrage",
+                        Model = "rbxassetid://13396010379", -- Your entity's model url here ("rbxassetid://1234567890" or GitHub raw url)
+                        Speed = 500,
+                        MoveDelay = 2,
+                        HeightOffset = 0,
+                        CanKill = true,
+                        KillRange = 50,
+                        SpawnInFront = false,
+                        ShatterLights = true,
+                        FlickerLights = {
+                            Enabled = false,
+                            Duration = 1
+                        },
+                        Cycles = {
+                            Min = 1,
+                            Max = 1,
+                            Delay = 3
+                        },
+                        CamShake = {
+                            Enabled = true,
+                            Values = {1.5, 20, 0.1, 1},
+                            Range = 100
+                        },
+                        ResistCrucifix = false,
+                        BreakCrucifix = true,
+                        DeathMessage = {"You died to Barrage.", "The entity will create 4 other clones of itself.", "Try not to leave the hiding spot too early or stay in for too long."},
+                        IsCuriousLight = false
+                    })
+                    local entity5 = Spawner.createEntity({
+                        CustomName = "Barrage",
+                        Model = "rbxassetid://13396010379", -- Your entity's model url here ("rbxassetid://1234567890" or GitHub raw url)
+                        Speed = 500,
+                        MoveDelay = 2,
+                        HeightOffset = 0,
+                        CanKill = true,
+                        KillRange = 50,
+                        SpawnInFront = false,
+                        ShatterLights = true,
+                        FlickerLights = {
+                            Enabled = false,
+                            Duration = 1
+                        },
+                        Cycles = {
+                            Min = 1,
+                            Max = 1,
+                            Delay = 3
+                        },
+                        CamShake = {
+                            Enabled = true,
+                            Values = {1.5, 20, 0.1, 1},
+                            Range = 100
+                        },
+                        ResistCrucifix = false,
+                        BreakCrucifix = true,
+                        DeathMessage = {"You died to Barrage.", "The entity will create 4 other clones of itself.", "Try not to leave the hiding spot too early or stay in for too long."},
+                        IsCuriousLight = false
+                    })
+
+                    ---====== Debug ======---
+
+                    entity.Debug.OnEntitySpawned = function()
+                        print("Entity has spawned")
+                    end
+
+                    entity5.Debug.OnEntityDespawned = function()
+                        if HasBarrageAchievement == false then
+                            local Achievements = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Custom%20Achievements/Source.lua"))()
+
+                            -- Creates and displays your custom achievement
+                            Achievements.Get({
+                                Title = "A Barrage Of Attacks",
+                                Desc = "Watch out, me and the boys coming through!",
+                                Reason = "Survive Barrage and its Clones.",
+                                Image = "http://www.roblox.com/asset/?id=13396205210",
+                            })
+                            HasBarrageAchievement = true
+                        end
+                    end
+
+                    entity.Debug.OnEntityStartMoving = function()
+                        print("Entity started moving")
+                    end
+
+                    entity.Debug.OnEntityFinishedRebound = function()
+                        print("Entity finished rebound")
+                    end
+
+                    entity.Debug.OnEntityEnteredRoom = function(room)
+                        print("Entity entered room:", room)
+                    end
+
+                    entity.Debug.OnLookAtEntity = function()
+                        print("Player looking at entity")
+                    end
+
+                    entity5.Debug.OnDeath = function()
+                        HasBarrageAchievement = true
+                    end
+
+                    --[[
+                        NOTE: By overwriting 'OnUseCrucifix', the default crucifixion will be ignored and this function will be called instead
+
+                        entity.Debug.OnUseCrucifix = function()
+                            print("Custom crucifixion script here")
+                        end
+                    ]]--
+
+                    ---====== Run entity ======---
+
+                    Spawner.runEntity(entity)
+                    wait(3)
+                    Spawner.runEntity(entity2)
+                    wait(3)
+                    Spawner.runEntity(entity3)
+                    wait(3)
+                    Spawner.runEntity(entity4)
+                    wait(3)
+                    Spawner.runEntity(entity5)
+                end
+                if EntityToSpawn == 25 then
+        
+                    local Spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Entity%20Spawner/Source.lua"))()
+                    
+                    ---====== Create entity ======---
+                    
+                    local entity = Spawner.createEntity({
+                        CustomName = "A-200",
+                        Model = "rbxassetid://13381226966", -- Your entity's model url here ("rbxassetid://1234567890" or GitHub raw url)
+                        Speed = 100,
+                        MoveDelay = 2,
+                        HeightOffset = 2,
+                        CanKill = true,
+                        KillRange = 50,
+                        SpawnInFront = true,
+                        ShatterLights = false,
+                        FlickerLights = {
+                            Enabled = false,
+                            Duration = 1
+                        },
+                        Cycles = {
+                            Min = 1,
+                            Max = 1,
+                            Delay = 0
+                        },
+                        CamShake = {
+                            Enabled = true,
+                            Values = {3.5, 20, 0.1, 1},
+                            Range = 100
+                        },
+                        ResistCrucifix = false,
+                        BreakCrucifix = true,
+                        DeathMessage = {"You died to A-200...","Wait... What?","How did A-200 make it to the hotel?","Well, use the same tactics you do with Rush."},
+                        IsCuriousLight = false
+                    })
+                    
+                    ---====== Debug ======---
+                    
+                    entity.Debug.OnEntitySpawned = function()
+                        print("Entity has spawned")
+                    end
+                    
+                    entity.Debug.OnEntityDespawned = function()
+                        print("Entity has despawned")
+                    end
+                    
+                    entity.Debug.OnEntityStartMoving = function()
+                        print("Entity started moving")
+                    end
+                    
+                    entity.Debug.OnEntityFinishedRebound = function()
+                        print("Entity finished rebound")
+                    end
+                    
+                    entity.Debug.OnEntityEnteredRoom = function(room)
+                        print("Entity entered room:", room)
+                    end
+                    
+                    entity.Debug.OnLookAtEntity = function()
+                        print("Player looking at entity")
+                    end
+                    
+                    entity.Debug.OnDeath = function()
+                        print("Player has died")
+                    end
+                    
                     --[[
                         NOTE: By overwriting 'OnUseCrucifix', the default crucifixion will be ignored and this function will be called instead
                     
@@ -1864,7 +2186,7 @@ Spawner.runEntity(entityTable)
                     
                     ---====== Run entity ======---
                     
-                   Spawner.runEntity(entity)
+                    Spawner.runEntity(entity)
                 end
     end
 end)
