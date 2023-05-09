@@ -203,7 +203,7 @@ until game:GetService("ReplicatedStorage").GameData.LatestRoom.Value > 3
         WhispererTalking:Stop()
         local SpawnChance = math.random(1,20)
         if SpawnChance >= 8 then
-            local EntityToSpawn = math.random(1,23)
+            local EntityToSpawn = math.random(1,25)
             if EntityToSpawn == 1 then
             local Spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Entity%20Spawner/Source.lua"))()
             
