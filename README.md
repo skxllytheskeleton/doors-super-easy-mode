@@ -15,3 +15,10 @@ meme4873 - Help/Support
 sanic person - Ideas
 
 DOORS community - Entity images and sounds
+
+### READ THIS
+
+I am currently working on a project called "SUPER EASY MODE - RECODED". I'll recode the entirety of the mode from scratch and update it to the current version of DOORS.
+
+Follow my progress on the project in the
+[discord.](https://discord.gg/MaNuzjVjV3)
