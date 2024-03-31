@@ -16,7 +16,7 @@ sanic person - Ideas
 
 DOORS community - Entity images and sounds
 
-### READ THIS
+## READ THIS
 
 I am currently working on a project called "SUPER EASY MODE - RECODED". I'll recode the entirety of the mode from scratch and update it to the current version of DOORS.
 
